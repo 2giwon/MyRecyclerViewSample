@@ -28,9 +28,9 @@ object Dependencies {
     const val HILT_CORE = "com.google.dagger:hilt-core:${Version.HILT}"
 
     const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib:${Version.KOTLIN_VER}"
-    const val CORE_KTX = "androidx.core:core-ktx:1.7.0"
+    const val CORE_KTX = "androidx.core:core-ktx:1.6.0"
     const val MATERIAL = "com.google.android.material:material:1.4.0"
-    const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.2"
+    const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.0"
 
     const val COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
 
