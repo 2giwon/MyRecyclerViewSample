@@ -45,6 +45,17 @@ dependencies {
     implementation Dependencies.HILT_ANDROID
     kapt Dependencies.HILT_COMPILER
 
+    implementation GlideDependencies.GLIDE
+
+    implementation NetworkConfig.RETROFIT
+    implementation NetworkConfig.LOGGING_INTERCEPTER
+    implementation NetworkConfig.RXJAVA_ADAPTER
+    implementation NetworkConfig.GSON
+
+    implementation Dependencies.RXJAVA
+    implementation Dependencies.RX_ANDROID
+    implementation Dependencies.RX_KOTLIN
+
     testImplementation TestConfig.JUNIT_JUPITER_API
     testRuntimeOnly TestConfig.JUNIT_JUPITER_ENGINE
     testImplementation TestConfig.JUNIT_JUPITER_PARAMS

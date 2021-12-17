@@ -21,6 +21,8 @@ object AndroidConfig {
 }
 
 object Dependencies {
+    private const val RXJAVA_VER = "2.2.21"
+
     const val HILT_ANDROID = "com.google.dagger:hilt-android:${Version.HILT}"
     const val HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${Version.HILT}"
 
@@ -32,7 +34,9 @@ object Dependencies {
     const val MATERIAL = "com.google.android.material:material:1.4.0"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.0"
 
-    const val COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+    const val RXJAVA = "io.reactivex.rxjava2:rxjava:$RXJAVA_VER"
+    const val RX_ANDROID = "io.reactivex.rxjava2:rxandroid:2.1.1"
+    const val RX_KOTLIN = "io.reactivex.rxjava2:rxkotlin:2.4.0"
 
     const val ACTIVITY_EXT = "androidx.activity:activity-ktx:1.3.1"
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:1.3.6"
@@ -51,6 +55,7 @@ object NetworkConfig {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VER"
     const val LOGGING_INTERCEPTER = "com.squareup.okhttp3:logging-interceptor:4.9.0"
     const val GSON = "com.squareup.retrofit2:converter-gson:$RETROFIT_VER"
+    const val RXJAVA_ADAPTER = "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VER"
 }
 
 object TestConfig {
