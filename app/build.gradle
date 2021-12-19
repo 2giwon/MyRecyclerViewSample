@@ -41,6 +41,7 @@ dependencies {
     implementation Dependencies.CORE_KTX
     implementation Dependencies.MATERIAL
     implementation Dependencies.CONSTRAINT_LAYOUT
+    implementation Dependencies.FRAGMENT_KTX
 
     implementation Dependencies.HILT_ANDROID
     kapt Dependencies.HILT_COMPILER
