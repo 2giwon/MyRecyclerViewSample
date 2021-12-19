@@ -1,4 +1,4 @@
-package com.egiwon.myrecyclerviewsample.data
+package com.egiwon.myrecyclerviewsample.data.service
 
 import com.egiwon.myrecyclerviewsample.data.model.RandomImageResponse
 import io.reactivex.Single

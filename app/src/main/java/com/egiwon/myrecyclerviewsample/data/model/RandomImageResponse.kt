@@ -1,5 +1,6 @@
 package com.egiwon.myrecyclerviewsample.data.model
 
+import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 import com.google.gson.annotations.SerializedName
 
 data class RandomImageResponse(
@@ -19,4 +20,19 @@ data class RandomImageResponse(
     val width: Int = 0,
     @SerializedName("height")
     val height: Int = 0
-)
+): DataToViewObject<PhotoVO> {
+    override fun toViewObject(): PhotoVO {
+        return PhotoVO(
+            id = id,
+            likes = likes,
+            fullImageUrl = urls.full,
+            regularImageUrl = urls.regular,
+            smallImageUrl = urls.small,
+            thumb = urls.thumb,
+            views = views,
+            width = width,
+            height = height
+        )
+    }
+
+}

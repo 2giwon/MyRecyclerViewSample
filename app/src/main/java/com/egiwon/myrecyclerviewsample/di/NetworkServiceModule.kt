@@ -1,6 +1,6 @@
 package com.egiwon.myrecyclerviewsample.di
 
-import com.egiwon.myrecyclerviewsample.data.RandomImageService
+import com.egiwon.myrecyclerviewsample.data.service.RandomImageService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
