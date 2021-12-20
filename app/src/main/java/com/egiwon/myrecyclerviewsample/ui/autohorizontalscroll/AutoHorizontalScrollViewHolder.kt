@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import com.egiwon.myrecyclerviewsample.base.BaseViewHolder
 import com.egiwon.myrecyclerviewsample.databinding.ItemAutoScrollBinding
+import com.egiwon.myrecyclerviewsample.ext.loadImageFromUrl
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class AutoHorizontalScrollViewHolder(
@@ -12,6 +13,6 @@ class AutoHorizontalScrollViewHolder(
 ): BaseViewHolder<PhotoVO, ItemAutoScrollBinding>(layoutResId, parent) {
 
     override fun onBindData(item: PhotoVO) {
-
+        binding.ivImage.loadImageFromUrl(item.regularImageUrl)
     }
 }

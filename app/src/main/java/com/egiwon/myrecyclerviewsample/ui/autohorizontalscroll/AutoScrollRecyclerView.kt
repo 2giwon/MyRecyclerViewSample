@@ -34,7 +34,7 @@ class AutoScrollRecyclerView @JvmOverloads constructor(
         return super.onTouchEvent(e)
     }
 
-    private fun autoScroll(itemSize: Int) {
+    fun autoScroll(itemSize: Int) {
         dispose?.let {
             if (!it.isDisposed) return
         }
@@ -47,12 +47,14 @@ class AutoScrollRecyclerView @JvmOverloads constructor(
     }
 
     private fun getNextPosition(itemSize: Int): Int {
-        val position = linearLayoutManager.findFirstCompletelyVisibleItemPosition()
+        val firstPosition = linearLayoutManager.findFirstCompletelyVisibleItemPosition()
+        val lastPosition = linearLayoutManager.findLastCompletelyVisibleItemPosition()
 
+        val position = if (firstPosition == lastPosition) firstPosition else lastPosition
         return (position + 1) % itemSize
     }
 
-    private fun stopAutoScroll() {
+    fun stopAutoScroll() {
         dispose?.let(Disposable::dispose)
     }
 }

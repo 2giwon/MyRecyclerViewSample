@@ -9,7 +9,7 @@ import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class AutoHorizontalScrollAdapter(
     @LayoutRes private val layoutResId: Int
-) : BaseAdapter<PhotoVO, ItemAutoScrollBinding>(layoutResId) {
+) : BaseAdapter<PhotoVO, ItemAutoScrollBinding>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
