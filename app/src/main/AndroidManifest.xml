@@ -2,14 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.egiwon.myrecyclerviewsample">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".MyRecyclerViewSampleApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyRecyclerViewSample"
-        android:name=".MyRecyclerViewSampleApplication">
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".MainActivity"
@@ -20,8 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.autohorizontalscroll.AutoHorizontalScrollActivity"
-            android:theme="@style/Theme.MyRecyclerViewSample"/>
+        <activity
+            android:name=".ui.autohorizontalscroll.AutoHorizontalScrollActivity"
+            android:theme="@style/Theme.MyRecyclerViewSample" />
     </application>
 
 </manifest>
