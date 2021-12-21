@@ -2,19 +2,25 @@ package com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import com.egiwon.myrecyclerviewsample.base.BaseAdapter
-import com.egiwon.myrecyclerviewsample.base.BaseViewHolder
-import com.egiwon.myrecyclerviewsample.databinding.ItemScrollImageBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class AutoHorizontalScrollAdapter(
     @LayoutRes private val layoutResId: Int
-) : BaseAdapter<PhotoVO, ItemScrollImageBinding>() {
+) : RecyclerView.Adapter<AutoHorizontalScrollViewHolder>() {
+
+    private val list = mutableListOf<PhotoVO>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<PhotoVO, ItemScrollImageBinding> {
+    ): AutoHorizontalScrollViewHolder {
         return AutoHorizontalScrollViewHolder(layoutResId, parent)
     }
+
+    override fun onBindViewHolder(holder: AutoHorizontalScrollViewHolder, position: Int) {
+        holder.onBindData(list[position])
+    }
+
+    override fun getItemCount(): Int = list.size
 }

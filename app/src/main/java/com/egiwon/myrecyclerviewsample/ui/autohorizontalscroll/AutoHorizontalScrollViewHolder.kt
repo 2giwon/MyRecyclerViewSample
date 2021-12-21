@@ -1,8 +1,10 @@
 package com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import com.egiwon.myrecyclerviewsample.base.BaseViewHolder
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.egiwon.myrecyclerviewsample.databinding.ItemScrollImageBinding
 import com.egiwon.myrecyclerviewsample.ext.loadImageFromUrl
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
@@ -10,9 +12,14 @@ import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 class AutoHorizontalScrollViewHolder(
     @LayoutRes layoutResId: Int,
     parent: ViewGroup
-): BaseViewHolder<PhotoVO, ItemScrollImageBinding>(layoutResId, parent) {
+) : RecyclerView.ViewHolder(
+    LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
+) {
 
-    override fun onBindData(item: PhotoVO) {
+    private val binding: ItemScrollImageBinding =
+        requireNotNull(DataBindingUtil.bind(itemView))
+
+    fun onBindData(item: PhotoVO) {
         binding.ivImage.loadImageFromUrl(item.regularImageUrl)
     }
 }
