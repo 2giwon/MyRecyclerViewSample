@@ -19,7 +19,7 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_auto_scroll" />
+            tools:listitem="@layout/item_scroll_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

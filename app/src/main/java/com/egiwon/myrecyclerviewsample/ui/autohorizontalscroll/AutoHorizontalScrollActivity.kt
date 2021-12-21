@@ -3,9 +3,7 @@ package com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseActivity
 import com.egiwon.myrecyclerviewsample.databinding.ActivityAutoScrollBinding
@@ -22,7 +20,7 @@ class AutoHorizontalScrollActivity : BaseActivity<ActivityAutoScrollBinding>(
         super.onCreate(savedInstanceState)
 
         binding.rvImages.adapter = AutoHorizontalScrollAdapter(
-            R.layout.item_auto_scroll
+            R.layout.item_scroll_image
         )
 
         binding.rvImages.setHasFixedSize(true)
