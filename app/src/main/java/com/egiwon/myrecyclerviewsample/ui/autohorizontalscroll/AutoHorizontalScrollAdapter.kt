@@ -23,4 +23,11 @@ class AutoHorizontalScrollAdapter(
     }
 
     override fun getItemCount(): Int = list.size
+
+    @Suppress("NotifyDataSetChanged")
+    fun replaceItems(items: List<PhotoVO>) {
+        list.clear()
+        list.addAll(items)
+        notifyDataSetChanged()
+    }
 }
