@@ -30,6 +30,10 @@
         <activity
             android:name=".ui.circlehorizontalscroll.CircleHorizontalScrollActivity"
             android:theme="@style/Theme.MyRecyclerViewSample" />
+
+        <activity
+            android:name=".ui.customscrollbar.CustomScrollBarActivity"
+            android:theme="@style/Theme.MyRecyclerViewSample" />
     </application>
 
 </manifest>
