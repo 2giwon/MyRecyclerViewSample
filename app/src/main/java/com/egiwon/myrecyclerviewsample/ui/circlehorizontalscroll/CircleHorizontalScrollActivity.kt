@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseActivity
 import com.egiwon.myrecyclerviewsample.databinding.ActivityCircleScrollBinding
-import com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll.AutoHorizontalScrollAdapter
-import com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll.AutoScrollViewModel
+import com.egiwon.myrecyclerviewsample.ui.ImageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +15,7 @@ class CircleHorizontalScrollActivity : BaseActivity<ActivityCircleScrollBinding>
     R.layout.activity_circle_scroll
 ) {
 
-    private val viewModel: AutoScrollViewModel by viewModels()
+    private val viewModel: ImageViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

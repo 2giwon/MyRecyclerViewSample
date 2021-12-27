@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseActivity
 import com.egiwon.myrecyclerviewsample.databinding.ActivityAutoScrollBinding
+import com.egiwon.myrecyclerviewsample.ui.ImageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,7 +15,7 @@ class AutoHorizontalScrollActivity : BaseActivity<ActivityAutoScrollBinding>(
     R.layout.activity_auto_scroll
 ) {
 
-    private val viewModel: AutoScrollViewModel by viewModels()
+    private val viewModel: ImageViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

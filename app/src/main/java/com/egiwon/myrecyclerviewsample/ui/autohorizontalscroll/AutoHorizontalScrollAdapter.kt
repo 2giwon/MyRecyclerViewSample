@@ -3,22 +3,23 @@ package com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.egiwon.myrecyclerviewsample.ui.ImageViewHolder
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class AutoHorizontalScrollAdapter(
     @LayoutRes private val layoutResId: Int
-) : RecyclerView.Adapter<AutoHorizontalScrollViewHolder>() {
+) : RecyclerView.Adapter<ImageViewHolder>() {
 
     private val list = mutableListOf<PhotoVO>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AutoHorizontalScrollViewHolder {
-        return AutoHorizontalScrollViewHolder(layoutResId, parent)
+    ): ImageViewHolder {
+        return ImageViewHolder(layoutResId, parent)
     }
 
-    override fun onBindViewHolder(holder: AutoHorizontalScrollViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         holder.onBindData(list[position])
     }
 
