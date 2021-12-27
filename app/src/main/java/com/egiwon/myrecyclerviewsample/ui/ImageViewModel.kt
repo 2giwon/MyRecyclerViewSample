@@ -1,4 +1,4 @@
-package com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll
+package com.egiwon.myrecyclerviewsample.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class AutoScrollViewModel @Inject constructor(
+class ImageViewModel @Inject constructor(
     private val repository: ImageRepository
 ): ViewModel() {
 

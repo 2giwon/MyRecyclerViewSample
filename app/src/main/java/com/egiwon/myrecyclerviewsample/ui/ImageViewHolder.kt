@@ -1,4 +1,4 @@
-package com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll
+package com.egiwon.myrecyclerviewsample.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.egiwon.myrecyclerviewsample.databinding.ItemScrollImageBinding
 import com.egiwon.myrecyclerviewsample.ext.loadImageFromUrl
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
-class AutoHorizontalScrollViewHolder(
+class ImageViewHolder(
     @LayoutRes layoutResId: Int,
     parent: ViewGroup
 ) : RecyclerView.ViewHolder(
