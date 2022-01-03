@@ -3,6 +3,7 @@ package com.egiwon.myrecyclerviewsample.ui.customscrollbar
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseActivity
 import com.egiwon.myrecyclerviewsample.databinding.ActivityCustomScrollBinding
@@ -18,13 +19,32 @@ class CustomScrollBarActivity : BaseActivity<ActivityCustomScrollBinding>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.rvImages.adapter = CustomScrollAdapter(
+            R.layout.item_scroll_image
+        )
+        binding.rvImages.setHasFixedSize(true)
+        binding.rvImages.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val range = recyclerView.computeHorizontalScrollRange()
+
+                val offset = recyclerView.computeHorizontalScrollOffset()
+                val extent = recyclerView.computeHorizontalScrollExtent()
+                val proportion = (offset * 1.0f / (range - extent))
+                val transMaxRange = binding.layoutScroll.width - binding.viewScrollBar.width
+
+                binding.viewScrollBar.translationX = transMaxRange * proportion
+            }
+        })
+
         viewModel.loadRandomImages(10)
         setObserve()
     }
 
     private fun setObserve() {
         viewModel.photos.observe(this, {
-
+            (binding.rvImages.adapter as? CustomScrollAdapter)?.replaceItems(it)
         })
 
         viewModel.errorMessage.observe(this, {
