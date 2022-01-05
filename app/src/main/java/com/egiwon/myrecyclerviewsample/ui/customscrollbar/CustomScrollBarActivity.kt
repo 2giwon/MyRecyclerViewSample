@@ -38,12 +38,12 @@ class CustomScrollBarActivity : BaseActivity<ActivityCustomScrollBinding>(
     }
 
     private fun scrollByRecyclerView(recyclerView: RecyclerView) {
-        val range = recyclerView.computeHorizontalScrollRange()
+        val range: Int = recyclerView.computeHorizontalScrollRange()
 
-        val offset = recyclerView.computeHorizontalScrollOffset()
-        val extent = recyclerView.computeHorizontalScrollExtent()
-        val proportion = (offset * 1.0f / (range - extent))
-        val transMaxRange = binding.layoutScroll.width - binding.viewScrollBar.width
+        val offset: Int = recyclerView.computeHorizontalScrollOffset()
+        val extent: Int = recyclerView.computeHorizontalScrollExtent()
+        val proportion: Float = (offset * 1.0f / (range - extent))
+        val transMaxRange: Float = (binding.layoutScroll.width - binding.viewScrollBar.width).toFloat()
 
         binding.viewScrollBar.translationX = transMaxRange * proportion
     }
