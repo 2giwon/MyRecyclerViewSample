@@ -11,6 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tv_before_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_margin="8dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:text="Without DiffUtil"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_before"
             android:layout_width="match_parent"
@@ -18,7 +30,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_before_title"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/item_title_image"/>
 
@@ -31,6 +43,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_after_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_margin="8dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:text="With DiffUtil"
+            app:layout_constraintTop_toBottomOf="@id/btn_refresh_before"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_after"
             android:layout_width="match_parent"
@@ -38,7 +62,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/btn_refresh_before"
+            app:layout_constraintTop_toBottomOf="@id/tv_after_title"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/item_title_image"/>
 
