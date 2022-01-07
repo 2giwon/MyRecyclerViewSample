@@ -7,6 +7,7 @@ import com.egiwon.myrecyclerviewsample.ext.startActivity
 import com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll.AutoHorizontalScrollActivity
 import com.egiwon.myrecyclerviewsample.ui.circlehorizontalscroll.CircleHorizontalScrollActivity
 import com.egiwon.myrecyclerviewsample.ui.customscrollbar.CustomScrollBarActivity
+import com.egiwon.myrecyclerviewsample.ui.diffutil.DiffUtilActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>(
     R.layout.activity_main
@@ -28,6 +29,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
         binding.buttonCustomScroll.setOnClickListener {
             startActivity<CustomScrollBarActivity>()
+        }
+
+        binding.buttonDiffutil.setOnClickListener {
+            startActivity<DiffUtilActivity>()
         }
     }
 }
