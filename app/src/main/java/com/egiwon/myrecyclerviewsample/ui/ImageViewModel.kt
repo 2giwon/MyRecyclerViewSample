@@ -16,10 +16,13 @@ import javax.inject.Inject
 @HiltViewModel
 class ImageViewModel @Inject constructor(
     private val repository: ImageRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _photos = MutableLiveData<List<PhotoVO>>()
     val photos: LiveData<List<PhotoVO>> get() = _photos
+
+    private val _photos2 = MutableLiveData<List<PhotoVO>>()
+    val photos2: LiveData<List<PhotoVO>> get() = _photos2
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
@@ -33,12 +36,20 @@ class ImageViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     _photos.value = it
+                    _photos2.value = it
                 },
                 onError = {
                     _errorMessage.value = it.message
                 }
             ).addTo(compositeDisposable)
     }
+
+    fun shuffleList() {
+        val newList: List<PhotoVO> = _photos.value?.shuffled() ?: emptyList()
+        _photos.value = newList
+        _photos2.value = newList
+    }
+
 
     override fun onCleared() {
         super.onCleared()

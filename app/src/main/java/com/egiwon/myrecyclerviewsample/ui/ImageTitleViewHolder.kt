@@ -21,5 +21,6 @@ class ImageTitleViewHolder(
     fun onBind(item: PhotoVO) {
         binding.tvTitle.text = item.likes.toString()
         binding.ivImage.loadImageFromUrl(item.regularImageUrl)
+        binding.executePendingBindings()
     }
 }

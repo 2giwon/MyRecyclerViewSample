@@ -19,15 +19,19 @@ class DiffUtilActivity : BaseActivity<ActivityDiffutilBinding>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.rvBefore.adapter = BeforeWithoutDiffUtilAdapter(
-            R.layout.item_title_image
-        )
+        binding.rvBefore.adapter = BeforeWithoutDiffUtilAdapter(R.layout.item_title_image)
         binding.rvBefore.setHasFixedSize(true)
 
-        binding.rvAfter.adapter = AfterWithDiffUtilAdapter(
-            R.layout.item_title_image
-        )
-        binding.rvBefore.setHasFixedSize(true)
+        binding.rvAfter.adapter = AfterWithDiffUtilAdapter(R.layout.item_title_image)
+        binding.rvAfter.setHasFixedSize(true)
+
+        binding.btnRefresh.setOnClickListener {
+            viewModel.loadRandomImages(10)
+        }
+
+        binding.btnShuffle.setOnClickListener {
+            viewModel.shuffleList()
+        }
 
         viewModel.loadRandomImages(10)
         setObserve()
@@ -36,8 +40,11 @@ class DiffUtilActivity : BaseActivity<ActivityDiffutilBinding>(
     private fun setObserve() {
         viewModel.photos.observe(this, {
             (binding.rvBefore.adapter as? BeforeWithoutDiffUtilAdapter)?.replaceItems(it)
-            (binding.rvAfter.adapter as? AfterWithDiffUtilAdapter)?.replaceItems(it)
         })
+
+        viewModel.photos2.observe(this) {
+            (binding.rvAfter.adapter as? AfterWithDiffUtilAdapter)?.replaceItems(it)
+        }
 
         viewModel.errorMessage.observe(this, {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()

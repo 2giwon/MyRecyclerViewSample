@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.egiwon.myrecyclerviewsample.ui.ImageTitleViewHolder
+import com.egiwon.myrecyclerviewsample.ui.ImageViewModel
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class BeforeWithoutDiffUtilAdapter(

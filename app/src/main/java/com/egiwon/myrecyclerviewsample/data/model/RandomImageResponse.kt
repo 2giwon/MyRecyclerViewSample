@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class RandomImageResponse(
     @SerializedName("description")
-    val description: Any = Any(),
+    val description: String? = "",
     @SerializedName("id")
     val id: String = "",
     @SerializedName("liked_by_user")
@@ -24,6 +24,7 @@ data class RandomImageResponse(
     override fun toViewObject(): PhotoVO {
         return PhotoVO(
             id = id,
+            description = description ?: "",
             likes = likes,
             fullImageUrl = urls.full,
             regularImageUrl = urls.regular,
