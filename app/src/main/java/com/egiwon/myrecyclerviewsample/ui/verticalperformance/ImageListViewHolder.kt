@@ -12,8 +12,6 @@ class ImageListViewHolder(
 ): BaseViewHolder<PhotoVO>(
     LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
 ) {
-    override fun bindData(item: PhotoVO) {
-
-
+    override fun bindData(item: PhotoVO?) {
     }
 }

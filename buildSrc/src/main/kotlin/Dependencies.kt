@@ -34,6 +34,8 @@ object Dependencies {
     const val MATERIAL = "com.google.android.material:material:1.4.0"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.0"
 
+    const val COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+
     const val RXJAVA = "io.reactivex.rxjava2:rxjava:$RXJAVA_VER"
     const val RX_ANDROID = "io.reactivex.rxjava2:rxandroid:2.1.1"
     const val RX_KOTLIN = "io.reactivex.rxjava2:rxkotlin:2.4.0"

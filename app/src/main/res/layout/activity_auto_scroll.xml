@@ -21,5 +21,15 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_scroll_image" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_images2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/rv_images"
+            tools:listitem="@layout/item_scroll_image" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

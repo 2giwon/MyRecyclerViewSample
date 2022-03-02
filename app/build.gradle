@@ -57,6 +57,8 @@ dependencies {
     implementation Dependencies.RX_ANDROID
     implementation Dependencies.RX_KOTLIN
 
+    implementation Dependencies.COROUTINE
+
     testImplementation TestConfig.JUNIT_JUPITER_API
     testRuntimeOnly TestConfig.JUNIT_JUPITER_ENGINE
     testImplementation TestConfig.JUNIT_JUPITER_PARAMS
