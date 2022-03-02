@@ -11,5 +11,6 @@ data class PhotoVO(
     val views: Int = 0,
     val width: Int = 0,
     val height: Int = 0,
+    val userProfileImage: String = "",
     val selected: Boolean = false
 )

@@ -19,7 +19,9 @@ data class RandomImageResponse(
     @SerializedName("width")
     val width: Int = 0,
     @SerializedName("height")
-    val height: Int = 0
+    val height: Int = 0,
+    @SerializedName("user")
+    val userResponse: UserResponse = UserResponse()
 ): DataToViewObject<PhotoVO> {
     override fun toViewObject(): PhotoVO {
         return PhotoVO(
@@ -32,7 +34,8 @@ data class RandomImageResponse(
             thumb = urls.thumb,
             views = views,
             width = width,
-            height = height
+            height = height,
+            userProfileImage = userResponse.profileImageResponse.mediumImage
         )
     }
 
