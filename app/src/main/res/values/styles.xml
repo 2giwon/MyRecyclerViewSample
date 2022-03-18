@@ -6,7 +6,7 @@
     </style>
 
     <style name="rounded_corner_top8">
-        <item name="cornerTopLeft">8dp</item>
-        <item name="cornerTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
     </style>
 </resources>
