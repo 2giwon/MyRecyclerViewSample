@@ -22,6 +22,7 @@ class MultiViewTypeAdapter : RecyclerView.Adapter<BaseViewHolder<Any>>() {
             }
             else -> object : BaseViewHolder<Any>(View(parent.context)) {
                 override fun bindData(item: Any?) {}
+
             }
         } as BaseViewHolder<Any>
     }
@@ -31,4 +32,14 @@ class MultiViewTypeAdapter : RecyclerView.Adapter<BaseViewHolder<Any>>() {
     }
 
     override fun getItemCount(): Int = list.size
+
+    override fun getItemViewType(position: Int): Int {
+        return list[position].itemViewType
+    }
+
+    fun replaceItems(items: List<RecyclerItem<*>>) {
+        list.clear()
+        list.addAll(items)
+        notifyDataSetChanged()
+    }
 }

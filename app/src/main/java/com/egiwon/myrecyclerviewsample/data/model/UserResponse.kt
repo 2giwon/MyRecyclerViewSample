@@ -7,6 +7,8 @@ data class UserResponse(
     val id: String = "",
     @SerializedName("username")
     val userName: String = "",
+    @SerializedName("name")
+    val name: String = "",
     @SerializedName("profile_image")
     val profileImageResponse: ProfileImageResponse = ProfileImageResponse()
 )

@@ -4,24 +4,27 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.egiwon.myrecyclerviewsample.databinding.ItemVerticalImagesBinding
+import com.egiwon.myrecyclerviewsample.base.BaseViewHolder
+import com.egiwon.myrecyclerviewsample.databinding.ItemVerticalImageBinding
 import com.egiwon.myrecyclerviewsample.ext.loadImageFromUrl
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class ImageInfoViewHolder(
     @LayoutRes layoutResId: Int,
     parent: ViewGroup
-): RecyclerView.ViewHolder(
+): BaseViewHolder<PhotoVO>(
     LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
 ) {
-    val binding: ItemVerticalImagesBinding by lazy(LazyThreadSafetyMode.NONE) {
-        ItemVerticalImagesBinding.bind(itemView)
+    val binding: ItemVerticalImageBinding by lazy(LazyThreadSafetyMode.NONE) {
+        ItemVerticalImageBinding.bind(itemView)
     }
 
-    fun onBind(item: PhotoVO) {
-        binding.ivImage.loadImageFromUrl(item.regularImageUrl)
-        binding.tvDescription.text = item.description
-        binding.tvLikes.text = item.likes.toString()
-        binding.executePendingBindings()
+    override fun bindData(item: PhotoVO?) {
+        item?.run {
+            binding.ivImage.loadImageFromUrl(regularImageUrl)
+            binding.tvDescription.text = description
+            binding.tvLikes.text = likes.toString()
+            binding.executePendingBindings()
+        }
     }
 }

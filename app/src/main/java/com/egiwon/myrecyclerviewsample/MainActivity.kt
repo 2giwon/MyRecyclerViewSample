@@ -8,6 +8,7 @@ import com.egiwon.myrecyclerviewsample.ui.autohorizontalscroll.AutoHorizontalScr
 import com.egiwon.myrecyclerviewsample.ui.circlehorizontalscroll.CircleHorizontalScrollActivity
 import com.egiwon.myrecyclerviewsample.ui.customscrollbar.CustomScrollBarActivity
 import com.egiwon.myrecyclerviewsample.ui.diffutil.DiffUtilActivity
+import com.egiwon.myrecyclerviewsample.ui.verticalperformance.VerticalOrientationActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>(
     R.layout.activity_main
@@ -33,6 +34,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
         binding.buttonDiffutil.setOnClickListener {
             startActivity<DiffUtilActivity>()
+        }
+
+        binding.buttonVertical.setOnClickListener {
+            startActivity<VerticalOrientationActivity>()
         }
     }
 }

@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.egiwon.myrecyclerviewsample.data.ImageRepository
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
+import com.egiwon.myrecyclerviewsample.ui.model.Photos
+import com.egiwon.myrecyclerviewsample.ui.model.RecyclerItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -27,12 +29,13 @@ class ImageViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
+    private val _recyclerItems = MutableLiveData<List<RecyclerItem<*>>>()
+    val recyclerItems: LiveData<List<RecyclerItem<*>>> get() = _recyclerItems
+
     private val compositeDisposable = CompositeDisposable()
 
     fun loadRandomImages(count: Int = 1) {
-        repository.fetchRandomImage(count)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        fetchRandomImages(count)
             .subscribeBy(
                 onSuccess = {
                     _photos.value = it
@@ -41,6 +44,22 @@ class ImageViewModel @Inject constructor(
                 onError = {
                     _errorMessage.value = it.message
                 }
+            ).addTo(compositeDisposable)
+    }
+
+    private fun fetchRandomImages(count: Int) = repository.fetchRandomImage(count)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+
+    fun loadImageRecyclerItems(count: Int) {
+        fetchRandomImages(count)
+            .subscribeBy(
+                onSuccess = {
+                    val recyclerItems = mutableListOf<RecyclerItem<*>>()
+                    recyclerItems.add(RecyclerItem(ViewType.IMAGE_LIST.ordinal, Photos(it)))
+                    _recyclerItems.value = recyclerItems
+                },
+                onError = {}
             ).addTo(compositeDisposable)
     }
 

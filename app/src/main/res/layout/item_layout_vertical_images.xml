@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_images"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -20,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="3"
-            tools:listitem="@layout/item_vertical_images" />
+            tools:listitem="@layout/item_vertical_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

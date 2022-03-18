@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Circle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="rounded_corner_top8">
+        <item name="cornerTopLeft">8dp</item>
+        <item name="cornerTopRight">8dp</item>
+    </style>
+</resources>

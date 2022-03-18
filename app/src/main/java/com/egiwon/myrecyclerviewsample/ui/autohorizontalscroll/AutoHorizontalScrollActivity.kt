@@ -52,11 +52,12 @@ class AutoHorizontalScrollActivity : BaseActivity<ActivityAutoScrollBinding>(
     private tailrec suspend fun autoScrollImageList() {
         val adapter = (binding.rvImages2.adapter as AutoScrollAdapter2)
         val size: Int = adapter.currentList.size
-        val layoutManager: LinearLayoutManager = (binding.rvImages2.layoutManager as LinearLayoutManager)
+        val layoutManager = binding.rvImages2.layoutManager as LinearLayoutManager
         val firstPosition = layoutManager.findFirstVisibleItemPosition()
 
         if (firstPosition + THRESHOLD < size) {
             binding.rvImages2.smoothScrollToPosition(getNextPosition(size, layoutManager))
+            delay(DELAY_BETWEEN_SCROLL_MS)
         } else {
 
             if (firstPosition != RecyclerView.NO_POSITION) {
@@ -65,8 +66,8 @@ class AutoHorizontalScrollActivity : BaseActivity<ActivityAutoScrollBinding>(
                 val firstPart = currentList.subList(firstPosition, currentList.size)
                 adapter.submitList(firstPart + secondPart)
             }
+            delay(500)
         }
-        delay(DELAY_BETWEEN_SCROLL_MS)
         autoScrollImageList()
     }
 
@@ -112,6 +113,6 @@ class AutoHorizontalScrollActivity : BaseActivity<ActivityAutoScrollBinding>(
     companion object {
         const val DELAY_BETWEEN_SCROLL_MS = 2000L
         const val DIRECTION_RIGHT = 1
-        const val THRESHOLD = 3
+        const val THRESHOLD = 4
     }
 }

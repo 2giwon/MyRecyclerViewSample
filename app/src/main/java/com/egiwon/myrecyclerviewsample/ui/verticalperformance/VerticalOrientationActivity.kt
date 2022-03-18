@@ -7,7 +7,12 @@ import com.egiwon.myrecyclerviewsample.base.BaseActivity
 import com.egiwon.myrecyclerviewsample.databinding.ActivityVerticalBinding
 import com.egiwon.myrecyclerviewsample.ui.ImageViewModel
 import com.egiwon.myrecyclerviewsample.ui.MultiViewTypeAdapter
+import com.egiwon.myrecyclerviewsample.ui.ViewType
+import com.egiwon.myrecyclerviewsample.ui.model.Photos
+import com.egiwon.myrecyclerviewsample.ui.model.RecyclerItem
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class VerticalOrientationActivity: BaseActivity<ActivityVerticalBinding>(
     R.layout.activity_vertical
 ) {
@@ -18,5 +23,14 @@ class VerticalOrientationActivity: BaseActivity<ActivityVerticalBinding>(
 
         binding.rvImages.adapter = MultiViewTypeAdapter()
         binding.rvImages.setHasFixedSize(true)
+
+        viewModel.loadImageRecyclerItems(10)
+        setObserve()
+    }
+
+    private fun setObserve() {
+        viewModel.recyclerItems.observe(this) {
+            (binding.rvImages.adapter as? MultiViewTypeAdapter)?.replaceItems(it)
+        }
     }
 }
