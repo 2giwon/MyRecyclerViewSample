@@ -35,7 +35,9 @@ data class RandomImageResponse(
             views = views,
             width = width,
             height = height,
-            userProfileImage = userResponse.profileImageResponse.mediumImage
+            userId = userResponse.id,
+            userName = userResponse.name,
+            userProfileImage = userResponse.profileImageResponse.largeImage
         )
     }
 

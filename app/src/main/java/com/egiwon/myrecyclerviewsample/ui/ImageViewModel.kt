@@ -57,6 +57,7 @@ class ImageViewModel @Inject constructor(
                 onSuccess = {
                     val recyclerItems = mutableListOf<RecyclerItem<*>>()
                     recyclerItems.add(RecyclerItem(ViewType.IMAGE_LIST.ordinal, Photos(it)))
+                    recyclerItems.add(RecyclerItem(ViewType.USER_IMAGE_LIST.ordinal, Photos(it)))
                     _recyclerItems.value = recyclerItems
                 },
                 onError = {}

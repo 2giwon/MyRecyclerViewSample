@@ -15,11 +15,8 @@ class MultiViewTypeAdapter : RecyclerView.Adapter<BaseViewHolder<Any>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> {
         @Suppress("UNCHECKED_CAST")
         return when (viewType) {
-            ViewType.IMAGE_LIST.ordinal -> {
-                ImageListViewHolder(
-                    R.layout.item_layout_vertical_images, parent
-                )
-            }
+            ViewType.IMAGE_LIST.ordinal -> ImageListViewHolder(parent)
+            ViewType.USER_IMAGE_LIST.ordinal -> UserProfileImagesViewHolder(parent)
             else -> object : BaseViewHolder<Any>(View(parent.context)) {
                 override fun bindData(item: Any?) {}
 

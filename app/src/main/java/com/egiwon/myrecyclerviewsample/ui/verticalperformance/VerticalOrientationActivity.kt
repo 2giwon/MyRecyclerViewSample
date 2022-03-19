@@ -24,7 +24,7 @@ class VerticalOrientationActivity: BaseActivity<ActivityVerticalBinding>(
         binding.rvImages.adapter = MultiViewTypeAdapter()
         binding.rvImages.setHasFixedSize(true)
 
-        viewModel.loadImageRecyclerItems(10)
+        viewModel.loadImageRecyclerItems(30)
         setObserve()
     }
 

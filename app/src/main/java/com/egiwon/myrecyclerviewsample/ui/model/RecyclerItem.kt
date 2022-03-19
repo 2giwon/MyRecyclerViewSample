@@ -1,6 +1,6 @@
 package com.egiwon.myrecyclerviewsample.ui.model
 
-data class RecyclerItem<out ITEM>(
+data class RecyclerItem<ITEM>(
     val itemViewType: Int = 0,
-    val item: ITEM
+    val item: ITEM?
 )
