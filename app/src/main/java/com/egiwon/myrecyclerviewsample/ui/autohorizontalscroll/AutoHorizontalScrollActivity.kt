@@ -5,13 +5,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseActivity
 import com.egiwon.myrecyclerviewsample.databinding.ActivityAutoScrollBinding
-import com.egiwon.myrecyclerviewsample.ext.dpToPx
 import com.egiwon.myrecyclerviewsample.ui.ImageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -23,12 +21,6 @@ class AutoHorizontalScrollActivity : BaseActivity<ActivityAutoScrollBinding>(
 ) {
 
     private val viewModel: ImageViewModel by viewModels()
-
-    private var orientationHelper: OrientationHelper? = null
-
-//    private val itemDp: Int by lazy {
-//        this@AutoHorizontalScrollActivity.dpToPx(200f).toInt()
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,7 +104,6 @@ class AutoHorizontalScrollActivity : BaseActivity<ActivityAutoScrollBinding>(
 
     companion object {
         const val DELAY_BETWEEN_SCROLL_MS = 2000L
-        const val DIRECTION_RIGHT = 1
         const val THRESHOLD = 4
     }
 }
