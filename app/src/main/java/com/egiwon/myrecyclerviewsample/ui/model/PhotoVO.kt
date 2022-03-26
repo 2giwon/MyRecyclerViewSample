@@ -13,6 +13,8 @@ data class PhotoVO(
     val height: Int = 0,
     val userId: String = "",
     val userName: String = "",
+    val userNameId: String = "",
     val userProfileImage: String = "",
+    val userImages: List<PhotoVO> = emptyList(),
     val selected: Boolean = false
 )

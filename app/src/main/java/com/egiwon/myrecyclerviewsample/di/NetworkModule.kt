@@ -42,12 +42,10 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(
         converterFactory: GsonConverterFactory,
-        rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
         client: OkHttpClient
     ): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(client)
-        .addCallAdapterFactory(rxJava2CallAdapterFactory)
         .addConverterFactory(converterFactory)
         .build()
 

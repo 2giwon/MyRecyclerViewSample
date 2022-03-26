@@ -1,5 +1,10 @@
 package com.egiwon.myrecyclerviewsample.ui.user
 
+import android.graphics.Color
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -10,7 +15,7 @@ import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class UserProfileItemViewHolder(
     @LayoutRes layoutResId: Int, parent: ViewGroup
-): BaseViewHolder<PhotoVO>(
+) : BaseViewHolder<PhotoVO>(
     LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
 ) {
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
@@ -21,7 +26,20 @@ class UserProfileItemViewHolder(
         item ?: return
 
         binding.ivProfile.loadImageFromUrl(item.userProfileImage)
-        binding.tvName.text = item.userName
+        if (item.selected) {
+            binding.tvName.setTextColor(Color.BLUE)
+            binding.tvName.text = SpannableStringBuilder(item.userName).apply {
+                setSpan(
+                    StyleSpan(Typeface.BOLD),
+                    0,
+                    item.userName.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        } else {
+            binding.tvName.text = item.userName
+        }
+
         binding.executePendingBindings()
     }
 

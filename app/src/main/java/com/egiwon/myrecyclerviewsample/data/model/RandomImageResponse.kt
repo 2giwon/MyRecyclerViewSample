@@ -22,7 +22,7 @@ data class RandomImageResponse(
     val height: Int = 0,
     @SerializedName("user")
     val userResponse: UserResponse = UserResponse()
-): DataToViewObject<PhotoVO> {
+) : DataToViewObject<PhotoVO> {
     override fun toViewObject(): PhotoVO {
         return PhotoVO(
             id = id,
@@ -37,7 +37,44 @@ data class RandomImageResponse(
             height = height,
             userId = userResponse.id,
             userName = userResponse.name,
+            userNameId = userResponse.userName,
             userProfileImage = userResponse.profileImageResponse.largeImage
+        )
+    }
+
+    fun toViewObjectArg(
+        id: String = this.id,
+        description: String = this.description ?: "",
+        likes: Int = this.likes,
+        fullImageUrl: String = this.urls.full,
+        regularImageUrl: String = this.urls.regular,
+        smallImageUrl: String = this.urls.small,
+        thumb: String = this.urls.thumb,
+        views: Int = this.views,
+        width: Int = this.width,
+        height: Int = this.height,
+        userId: String = this.userResponse.id,
+        userName: String = this.userResponse.name,
+        userNameId: String = this.userResponse.userName,
+        userProfileImage: String = this.userResponse.profileImageResponse.largeImage,
+        selected: Boolean = false
+    ): PhotoVO {
+        return PhotoVO(
+            id,
+            description,
+            likes,
+            fullImageUrl,
+            regularImageUrl,
+            smallImageUrl,
+            thumb,
+            views,
+            width,
+            height,
+            userId,
+            userName,
+            userNameId,
+            userProfileImage,
+            selected
         )
     }
 

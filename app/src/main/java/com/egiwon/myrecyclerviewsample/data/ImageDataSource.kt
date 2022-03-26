@@ -4,5 +4,7 @@ import com.egiwon.myrecyclerviewsample.data.model.RandomImageResponse
 import io.reactivex.Single
 
 interface ImageDataSource {
-    fun fetchRandomImages(count: Int): Single<List<RandomImageResponse>>
+    suspend fun fetchRandomImages(count: Int): List<RandomImageResponse>
+
+    suspend fun fetchImageFromUser(userName: String): List<RandomImageResponse>
 }

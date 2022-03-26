@@ -1,6 +1,7 @@
 package com.egiwon.myrecyclerviewsample.ui.verticalperformance
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseActivity
@@ -24,13 +25,17 @@ class VerticalOrientationActivity: BaseActivity<ActivityVerticalBinding>(
         binding.rvImages.adapter = MultiViewTypeAdapter()
         binding.rvImages.setHasFixedSize(true)
 
-        viewModel.loadImageRecyclerItems(30)
+        viewModel.loadRandomImagesAndUserImages(30)
         setObserve()
     }
 
     private fun setObserve() {
         viewModel.recyclerItems.observe(this) {
             (binding.rvImages.adapter as? MultiViewTypeAdapter)?.replaceItems(it)
+        }
+
+        viewModel.errorMessage.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         }
     }
 }

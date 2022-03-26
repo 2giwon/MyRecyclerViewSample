@@ -9,7 +9,11 @@ import javax.inject.Inject
 class ImageDataSourceImpl @Inject constructor(
     private val randomImageService: RandomImageService
 ) : ImageDataSource {
-    override fun fetchRandomImages(count: Int): Single<List<RandomImageResponse>> {
+    override suspend fun fetchRandomImages(count: Int): List<RandomImageResponse> {
         return randomImageService.fetchRandomImage(count)
+    }
+
+    override suspend fun fetchImageFromUser(userName: String): List<RandomImageResponse> {
+        return randomImageService.fetchUserPhotos(userName)
     }
 }
