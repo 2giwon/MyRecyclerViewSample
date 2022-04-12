@@ -1,5 +1,6 @@
 package com.egiwon.myrecyclerviewsample.ui.user
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.text.Spannable
@@ -8,6 +9,8 @@ import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
+import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseViewHolder
 import com.egiwon.myrecyclerviewsample.databinding.ItemUserProfileImageBinding
 import com.egiwon.myrecyclerviewsample.ext.loadImageFromUrl
@@ -21,6 +24,8 @@ class UserProfileItemViewHolder(
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         ItemUserProfileImageBinding.bind(itemView)
     }
+
+    private val context: Context = binding.root.context
 
     override fun bindData(item: PhotoVO?) {
         item ?: return
@@ -38,6 +43,7 @@ class UserProfileItemViewHolder(
             }
         } else {
             binding.tvName.text = item.userName
+            binding.tvName.setTextColor(ContextCompat.getColor(context, R.color.black))
         }
 
         binding.executePendingBindings()

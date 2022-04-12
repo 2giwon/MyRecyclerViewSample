@@ -9,10 +9,8 @@ import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 import com.egiwon.myrecyclerviewsample.ui.model.Photos
 import com.egiwon.myrecyclerviewsample.ui.model.RecyclerItem
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -49,44 +47,84 @@ class ImageViewModel @Inject constructor(
             }
     }
 
-    fun loadImageRecyclerItems(count: Int) = viewModelScope.launch(coroutineExceptionHandler) {
-        repository.fetchRandomImage(count)
-            .onSuccess {
-                val recyclerItems = mutableListOf<RecyclerItem<*>>()
-                recyclerItems.add(RecyclerItem(ViewType.IMAGE_LIST.ordinal, Photos(it)))
-                recyclerItems.add(RecyclerItem(ViewType.USER_IMAGE_LIST.ordinal, Photos(it)))
-                _recyclerItems.value = recyclerItems
+    fun loadRandomImagesAndUserImages(count: Int) =
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val recyclerItems = mutableListOf<RecyclerItem<*>>()
+            val randomImagesDeferred: Deferred<Result<List<PhotoVO>>> = async {
+                repository.fetchRandomImage(count)
             }
-            .onFailure {
-                _errorMessage.value = it.message
-            }
-    }
 
-    fun loadRandomImagesAndUserImages(count: Int) = viewModelScope.launch(coroutineExceptionHandler) {
-        val recyclerItems = mutableListOf<RecyclerItem<*>>()
-        val randomImagesDeferred: Deferred<Result<List<PhotoVO>>> = async {
-            repository.fetchRandomImage(count)
+            val randomImages: Result<List<PhotoVO>> = randomImagesDeferred.await()
+            randomImages
+                .onSuccess { photos ->
+                    val newPhotos = Photos(photos)
+                    if (photos.isNotEmpty()) {
+                        recyclerItems.add(RecyclerItem(ViewType.IMAGE_LIST.ordinal, newPhotos))
+
+                        val deferred =
+                            async { repository.fetchImageFromUser(photos.first().userNameId) }
+
+                        deferred.await()
+                            .onSuccess { userPhotos ->
+                                val newUserPhotos =
+                                    newPhotos.copy(photoList = newPhotos.photoList.map { photo ->
+                                        if (photo.selected) photo.copy(userImages = userPhotos) else photo
+                                    })
+                                recyclerItems.add(
+                                    RecyclerItem(
+                                        ViewType.USER_IMAGE_LIST.ordinal,
+                                        newUserPhotos
+                                    )
+                                )
+                                recyclerItems.add(
+                                    RecyclerItem(
+                                        ViewType.IMAGE_LIST.ordinal,
+                                        newPhotos
+                                    )
+                                )
+                                _recyclerItems.value = recyclerItems
+                            }
+                            .onFailure {
+                                _errorMessage.value = it.message
+                            }
+                    }
+                }
+                .onFailure {
+                    _errorMessage.value = it.message
+                }
         }
 
-        val randomImages: Result<List<PhotoVO>> = randomImagesDeferred.await()
-        randomImages
-            .onSuccess { photos ->
-                if (photos.isNotEmpty()) {
-                    recyclerItems.add(RecyclerItem(ViewType.IMAGE_LIST.ordinal, Photos(photos)))
-                    recyclerItems.add(RecyclerItem(ViewType.USER_IMAGE_LIST.ordinal, Photos(photos)))
+    fun selectProfile(selectedPosition: Int) = viewModelScope.launch(coroutineExceptionHandler) {
+        val recyclerItems: List<RecyclerItem<*>> = _recyclerItems.value ?: return@launch
+        val userPhotos: Photos = recyclerItems.find {
+            it.itemViewType == ViewType.USER_IMAGE_LIST.ordinal
+        }?.item as? Photos ?: return@launch
 
-                    val deferred =
-                        async { repository.fetchImageFromUser(photos.first().userNameId) }
+        val selectedUserIdName: String = userPhotos.photoList[selectedPosition].userNameId
+        val deferred =
+            async { repository.fetchImageFromUser(selectedUserIdName) }
 
-                    deferred.await()
-                        .onSuccess { userPhotos ->
-                            recyclerItems.add(RecyclerItem(ViewType.IMAGE_LIST.ordinal, Photos(userPhotos)))
-                            _recyclerItems.value = recyclerItems
+        deferred.await()
+            .onSuccess { newUserPhotoList ->
+                val newUserPhotos: Photos =
+                    userPhotos.copy(photoList = userPhotos.photoList.mapIndexed { index, photoVO ->
+                        photoVO.copy(
+                            selected = index == selectedPosition,
+                            userImages = if (index == selectedPosition) newUserPhotoList else emptyList()
+                        )
+                    })
+                val newRecyclerItems: MutableList<RecyclerItem<*>> = mutableListOf()
+                newRecyclerItems.addAll(
+                    recyclerItems.map {
+                        if (it.itemViewType == ViewType.USER_IMAGE_LIST.ordinal) {
+                            RecyclerItem(it.itemViewType, newUserPhotos)
+                        } else {
+                            it
                         }
-                        .onFailure {
-                            _errorMessage.value = it.message
-                        }
-                }
+                    }
+                )
+
+                _recyclerItems.value = newRecyclerItems
             }
             .onFailure {
                 _errorMessage.value = it.message

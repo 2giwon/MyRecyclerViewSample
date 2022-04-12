@@ -60,21 +60,21 @@ data class RandomImageResponse(
         selected: Boolean = false
     ): PhotoVO {
         return PhotoVO(
-            id,
-            description,
-            likes,
-            fullImageUrl,
-            regularImageUrl,
-            smallImageUrl,
-            thumb,
-            views,
-            width,
-            height,
-            userId,
-            userName,
-            userNameId,
-            userProfileImage,
-            selected
+            id = id,
+            description = description,
+            likes = likes,
+            fullImageUrl = fullImageUrl,
+            regularImageUrl = regularImageUrl,
+            smallImageUrl = smallImageUrl,
+            thumb = thumb,
+            views = views,
+            width = width,
+            height = height,
+            userId = userId,
+            userName = userName,
+            userNameId = userNameId,
+            userProfileImage = userProfileImage,
+            selected = selected
         )
     }
 

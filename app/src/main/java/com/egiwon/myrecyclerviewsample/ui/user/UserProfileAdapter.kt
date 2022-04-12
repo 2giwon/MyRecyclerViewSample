@@ -8,9 +8,14 @@ import com.egiwon.myrecyclerviewsample.databinding.ItemUserProfileImageBinding
 import com.egiwon.myrecyclerviewsample.ui.model.PhotoVO
 
 class UserProfileAdapter(
-    @LayoutRes private val layoutResId: Int
+    @LayoutRes private val layoutResId: Int,
+    private val onClick: (Int) -> Unit
 ) : BaseAdapter<PhotoVO, ItemUserProfileImageBinding>(layoutResId) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<PhotoVO> {
-        return UserProfileItemViewHolder(layoutResId, parent)
+        return UserProfileItemViewHolder(layoutResId, parent).apply {
+            itemView.setOnClickListener {
+                onClick(adapterPosition)
+            }
+        }
     }
 }

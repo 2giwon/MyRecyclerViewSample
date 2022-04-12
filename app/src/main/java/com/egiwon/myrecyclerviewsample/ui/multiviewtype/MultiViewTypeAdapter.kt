@@ -1,14 +1,18 @@
-package com.egiwon.myrecyclerviewsample.ui
+package com.egiwon.myrecyclerviewsample.ui.multiviewtype
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseViewHolder
+import com.egiwon.myrecyclerviewsample.ui.ImageViewModel
+import com.egiwon.myrecyclerviewsample.ui.UserProfileImagesViewHolder
+import com.egiwon.myrecyclerviewsample.ui.ViewType
 import com.egiwon.myrecyclerviewsample.ui.model.RecyclerItem
 import com.egiwon.myrecyclerviewsample.ui.verticalperformance.ImageListViewHolder
 
-class MultiViewTypeAdapter : RecyclerView.Adapter<BaseViewHolder<Any>>() {
+class MultiViewTypeAdapter(
+    private val viewModel: ImageViewModel
+) : RecyclerView.Adapter<BaseViewHolder<Any>>() {
 
     private val list = mutableListOf<RecyclerItem<*>>()
 
@@ -16,7 +20,7 @@ class MultiViewTypeAdapter : RecyclerView.Adapter<BaseViewHolder<Any>>() {
         @Suppress("UNCHECKED_CAST")
         return when (viewType) {
             ViewType.IMAGE_LIST.ordinal -> ImageListViewHolder(parent)
-            ViewType.USER_IMAGE_LIST.ordinal -> UserProfileImagesViewHolder(parent)
+            ViewType.USER_IMAGE_LIST.ordinal -> UserProfileImagesViewHolder(parent, viewModel)
             else -> object : BaseViewHolder<Any>(View(parent.context)) {
                 override fun bindData(item: Any?) {}
 
