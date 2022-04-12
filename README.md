@@ -15,3 +15,7 @@
 - Custom Scroll bar
 
 ![customscrollbar](https://user-images.githubusercontent.com/10140528/147924581-f94fd5d2-4e2e-4f1a-ad0b-bcf1a3d19148.gif)
+
+- Vertical Performance
+
+![Vertical](https://user-images.githubusercontent.com/10140528/162975666-27bb1a7e-303b-4c1c-b17c-404ae9c40c6d.gif)
