@@ -38,8 +38,12 @@
         <activity
             android:name=".ui.diffutil.DiffUtilActivity"
             android:theme="@style/Theme.MyRecyclerViewSample" />
+
         <activity
             android:name=".ui.verticalperformance.VerticalOrientationActivity"
+            android:theme="@style/Theme.MyRecyclerViewSample" />
+
+        <activity android:name=".ui.verticalperformance.VerticalOrientationHighActivity"
             android:theme="@style/Theme.MyRecyclerViewSample" />
     </application>
 
