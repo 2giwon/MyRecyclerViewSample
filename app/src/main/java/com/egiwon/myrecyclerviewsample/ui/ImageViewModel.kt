@@ -94,6 +94,57 @@ class ImageViewModel @Inject constructor(
                 }
         }
 
+    fun loadHighRandomImagesAndUserImages(
+        count: Int
+    ) = viewModelScope.launch(coroutineExceptionHandler) {
+            val recyclerItems = mutableListOf<RecyclerItem<*>>()
+            val randomImagesDeferred: Deferred<Result<List<PhotoVO>>> = async {
+                repository.fetchRandomImage(count)
+            }
+
+            val randomImages: Result<List<PhotoVO>> = randomImagesDeferred.await()
+            randomImages
+                .onSuccess { photos ->
+                    val newPhotos = Photos(photos)
+                    if (photos.isNotEmpty()) {
+                        newPhotos.photoList.forEach {
+                            recyclerItems.add(RecyclerItem(ViewType.IMAGE_ITEM.ordinal, it))
+                        }
+
+                        val deferred =
+                            async { repository.fetchImageFromUser(photos.first().userNameId) }
+
+                        deferred.await()
+                            .onSuccess { userPhotos ->
+                                val newUserPhotos =
+                                    newPhotos.copy(photoList = newPhotos.photoList.map { photo ->
+                                        if (photo.selected) photo.copy(userImages = userPhotos) else photo
+                                    })
+                                recyclerItems.add(
+                                    RecyclerItem(
+                                        ViewType.USER_IMAGE_LIST.ordinal,
+                                        newUserPhotos
+                                    )
+                                )
+
+                                newPhotos.photoList.forEach {
+                                    recyclerItems.add(
+                                        RecyclerItem(ViewType.IMAGE_ITEM.ordinal, it)
+                                    )
+                                }
+
+                                _recyclerItems.value = recyclerItems
+                            }
+                            .onFailure {
+                                _errorMessage.value = it.message
+                            }
+                    }
+                }
+                .onFailure {
+                    _errorMessage.value = it.message
+                }
+        }
+
     fun selectProfile(selectedPosition: Int) = viewModelScope.launch(coroutineExceptionHandler) {
         val recyclerItems: List<RecyclerItem<*>> = _recyclerItems.value ?: return@launch
         val userPhotos: Photos = recyclerItems.find {

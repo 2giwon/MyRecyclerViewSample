@@ -3,4 +3,5 @@
     <dimen name="offset16">16dp</dimen>
     <dimen name="offset8">8dp</dimen>
     <dimen name="offset4">4dp</dimen>
+    <dimen name="offset2">2dp</dimen>
 </resources>

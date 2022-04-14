@@ -3,6 +3,7 @@ package com.egiwon.myrecyclerviewsample.ui.verticalperformance
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.egiwon.myrecyclerviewsample.R
 import com.egiwon.myrecyclerviewsample.base.BaseActivity
 import com.egiwon.myrecyclerviewsample.databinding.ActivityHighVerticalBinding
@@ -19,10 +20,15 @@ class VerticalOrientationHighActivity: BaseActivity<ActivityHighVerticalBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.rvImages.adapter = MultiViewTypeAdapter(viewModel)
+        val adapter = MultiViewTypeAdapter(viewModel)
+        binding.rvImages.adapter = adapter
         binding.rvImages.setHasFixedSize(true)
+        binding.rvImages.addItemDecoration(ImageItemDecoration())
 
-        viewModel.loadRandomImagesAndUserImages(30)
+        val layoutManager = GridLayoutManager(this, 6, GridLayoutManager.VERTICAL, false)
+        adapter.setLayoutManger(layoutManager)
+        binding.rvImages.layoutManager = layoutManager
+        viewModel.loadHighRandomImagesAndUserImages(30)
         setObserve()
     }
 
