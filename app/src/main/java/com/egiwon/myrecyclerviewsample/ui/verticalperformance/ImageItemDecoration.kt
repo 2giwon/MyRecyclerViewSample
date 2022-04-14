@@ -17,16 +17,18 @@ class ImageItemDecoration: RecyclerView.ItemDecoration() {
         super.getItemOffsets(outRect, view, parent, state)
         val lp: GridLayoutManager.LayoutParams = view.layoutParams as GridLayoutManager.LayoutParams
 
+        outRect.top = view.context.resources.getDimensionPixelOffset(R.dimen.offset8)
+
         when (lp.spanIndex) {
             0 -> {
-                outRect.left = view.context.resources.getDimensionPixelOffset(R.dimen.offset4)
+                outRect.left = view.context.resources.getDimensionPixelOffset(R.dimen.offset16)
             }
-            1 -> {
-                outRect.left = view.context.resources.getDimensionPixelOffset(R.dimen.offset2)
-                outRect.right = view.context.resources.getDimensionPixelOffset(R.dimen.offset2)
+            2 -> {
+                outRect.left = view.context.resources.getDimensionPixelOffset(R.dimen.offset8)
+                outRect.right = view.context.resources.getDimensionPixelOffset(R.dimen.offset8)
             }
-            else -> {
-                outRect.right = view.context.resources.getDimensionPixelOffset(R.dimen.offset4)
+            4 -> {
+                outRect.right = view.context.resources.getDimensionPixelOffset(R.dimen.offset16)
             }
         }
     }
